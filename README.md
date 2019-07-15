@@ -9,7 +9,8 @@ To download. click the DOWNLOADS button in the top right corner, rename the unco
 # Reef complete PCF8575 PCF8575AP digital input and output expander with i2c bus.
 I try to simplify the use of this IC, with a minimal set of operation.
 
-PCF8575 address standard address 0x20 
+PCF8575P address map 0x20-0x27 
+PCF8575AP address map 0x38-0x3f 
 
 Constructor:
 you must pas the address of i2c (to check the adress use this guide [I2cScanner](https://playground.arduino.cc/Main/I2cScanner)) 
