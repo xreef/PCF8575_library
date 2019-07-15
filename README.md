@@ -9,8 +9,7 @@ To download. click the DOWNLOADS button in the top right corner, rename the unco
 # Reef complete PCF8575 PCF8575AP digital input and output expander with i2c bus.
 I try to simplify the use of this IC, with a minimal set of operation.
 
-PCF8575P address map 0x20-0x27 
-PCF8575AP address map 0x38-0x3f 
+PCF8575 address map 0x20 default
 
 Constructor:
 you must pas the address of i2c (to check the adress use this guide [I2cScanner](https://playground.arduino.cc/Main/I2cScanner)) 
@@ -59,7 +58,7 @@ Enable low memory props and gain about 7byte of memory, and you must use the met
 	Serial.println(di, BIN);
 ```
 
-where di is a byte like 1110001, so you must do a bitwise operation to get the data, operation that I already do in the "normal" mode, here an example:
+where di is a byte like 11100011110001, so you must do a bitwise operation to get the data, operation that I already do in the "normal" mode, here an example:
 
  ```cpp
 	p0 = ((di & bit(0))>0)?HIGH:LOW;
