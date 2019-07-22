@@ -1,10 +1,10 @@
 /*
  * PCF8575 GPIO Port Expand
- * https://www.mischianti.org/2019/01/02/pcf8575-i2c-digital-i-o-expander-fast-easy-usage/
+ * https://www.mischianti.org/
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Renzo Mischianti www.mischianti.org All right reserved.
+ * Copyright (c) 2019 Renzo Mischianti www.mischianti.org All right reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
