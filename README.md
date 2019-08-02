@@ -1,5 +1,7 @@
 Additional information and document update here on my site: [pcf8575 Article](https://www.mischianti.org/2019/01/02/pcf8575-i2c-digital-i-o-expander-fast-easy-usage/).
 
+If you need less pins [here](https://www.mischianti.org/2019/01/02/pcf8574-i2c-digital-i-o-expander-fast-easy-usage/) you can find pcf8574 8drbit version of the IC.
+
 Library to use i2c analog IC with arduino and esp8266. Can read and write digital value with only 2 wire (perfect for ESP-01).
 
 Tutorial: 
