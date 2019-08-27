@@ -1,4 +1,4 @@
-Additional information and document update here on my site: [pcf8575 Article](https://www.mischianti.org/2019/01/02/pcf8575-i2c-digital-i-o-expander-fast-easy-usage/).
+Additional information and document update here on my site: [pcf8575 Article](https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/).
 
 If you need less pins [here](https://www.mischianti.org/2019/01/02/pcf8574-i2c-digital-i-o-expander-fast-easy-usage/) you can find pcf8574 8drbit version of the IC.
 
