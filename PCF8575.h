@@ -1,6 +1,6 @@
 /*
  * PCF8575 GPIO Port Expand
- * https://www.mischianti.org/
+ * https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/
  *
  * The MIT License (MIT)
  *
