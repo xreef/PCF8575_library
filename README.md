@@ -1,3 +1,14 @@
+<div>
+<a href="https://www.mischianti.org/forum/forum/xreef-pcf8575_library-2/"><img
+  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/mischaintiForumSupport.png" alt="Support forum e32 English"
+   align="right"></a>
+</div>
+<div>
+<a href="https://www.mischianti.org/forum/forum/xreef-pcf8575_library/"><img
+  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportoForum.png" alt="Forum supporto e32 italiano"
+  align="right"></a>
+</div>
+
 ###Additional information and document update here on my site: [pcf8575 Article](https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/).
 
 ###If you need less pins [here](https://www.mischianti.org/2019/01/02/pcf8574-i2c-digital-i-o-expander-fast-easy-usage/) you can find pcf8574 discrete 8bit version of the IC.
