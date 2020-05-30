@@ -1,11 +1,11 @@
 <div>
 <a href="https://www.mischianti.org/forum/forum/library-for-pcf8575-16bits-i2c-digital-i-o-expander-arduino-esp8266-and-esp32/"><img
-  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/mischaintiForumSupport.png" alt="Support forum e32 English"
+  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportForumEnglish.png" alt="Support forum pcf8575 English"
    align="right"></a>
 </div>
 <div>
 <a href="https://www.mischianti.org/forum/forum/libreria-per-lintegrato-pcf8575-un-i2c-i-o-expander-digitale-a-16bits-arduino-esp8266-e-esp32/"><img
-  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportoForum.png" alt="Forum supporto e32 italiano"
+  src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportForumItaliano.png" alt="Forum supporto pcf8575 italiano"
   align="right"></a>
 </div>
 
