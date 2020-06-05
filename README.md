@@ -1,10 +1,10 @@
 <div>
-<a href="https://www.mischianti.org/forums/forum/english-support-forum/mischiantis-libraries/pcf8575-16bits-i2c-digital-i-o-expander/"><img
+<a href="https://www.mischianti.org/forums/forum/mischiantis-libraries/pcf8575-16bits-i2c-digital-i-o-expander/"><img
   src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportForumEnglish.png" alt="Support forum pcf8575 English"
    align="right"></a>
 </div>
 <div>
-<a href="https://www.mischianti.org/forums/forum/forum-di-supporto-in-italiano/le-librerie-di-mischianti/pcf8575-expander-digitale-i-o-i2c-a-16bits/"><img
+<a href="https://www.mischianti.org/it/forums/forum/le-librerie-di-mischianti/pcf8575-expander-digitale-i-o-i2c-a-16bits/"><img
   src="https://github.com/xreef/LoRa_E32_Series_Library/raw/master/resources/buttonSupportForumItaliano.png" alt="Forum supporto pcf8575 italiano"
   align="right"></a>
 </div>
