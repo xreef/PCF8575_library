@@ -212,18 +212,18 @@ void PCF8575::pinMode(uint8_t pin, uint8_t mode){
 	if (mode == OUTPUT){
 		writeMode = writeMode | bit(pin);
 		readMode =  readMode & ~bit(pin);
-		DEBUG_PRINT("writeMode: ");
-		DEBUG_PRINT(writeMode, BIN);
-		DEBUG_PRINT("readMode: ");
-		DEBUG_PRINTLN(readMode, BIN);
+//		DEBUG_PRINT("writeMode: ");
+//		DEBUG_PRINT(writeMode, BIN);
+//		DEBUG_PRINT("readMode: ");
+//		DEBUG_PRINTLN(readMode, BIN);
 
 	}else if (mode == INPUT){
 		writeMode = writeMode & ~bit(pin);
 		readMode =   readMode | bit(pin);
-		DEBUG_PRINT("writeMode: ");
-		DEBUG_PRINT(writeMode, BIN);
-		DEBUG_PRINT("readMode: ");
-		DEBUG_PRINTLN(readMode, BIN);
+//		DEBUG_PRINT("writeMode: ");
+//		DEBUG_PRINT(writeMode, BIN);
+//		DEBUG_PRINT("readMode: ");
+//		DEBUG_PRINTLN(readMode, BIN);
 	}
 	else{
 		DEBUG_PRINTLN("Mode non supported by PCF8575")
@@ -355,6 +355,25 @@ void PCF8575::readBuffer(bool force){
  */
 uint8_t PCF8575::digitalRead(uint8_t pin){
 	uint8_t value = LOW;
+	if ((bit(pin) & writeMode)>0){
+		DEBUG_PRINTLN("Pin in write mode, return value");
+		DEBUG_PRINT("Write data ");
+		DEBUG_PRINT(writeByteBuffered, BIN);
+		DEBUG_PRINT(" for pin ");
+		DEBUG_PRINT(pin);
+		DEBUG_PRINT(" bin value ");
+		DEBUG_PRINT(bit(pin), BIN);
+		DEBUG_PRINT(" value ");
+		DEBUG_PRINTLN(value);
+
+		if ((bit(pin) & writeByteBuffered)>0){
+			  value = HIGH;
+		  }else{
+			  value = LOW;
+		  }
+		return value;
+	}
+
 	DEBUG_PRINT("Read pin ");
 	DEBUG_PRINTLN(pin);
 	// Check if pin already HIGH than read and prevent reread of i2c
@@ -413,14 +432,14 @@ void PCF8575::digitalWrite(uint8_t pin, uint8_t value){
 	}else{
 		writeByteBuffered = writeByteBuffered & ~bit(pin);
 	}
-	DEBUG_PRINT("Write data ");
-	DEBUG_PRINT(writeByteBuffered, BIN);
-	DEBUG_PRINT(" for pin ");
-	DEBUG_PRINT(pin);
-	DEBUG_PRINT(" bin value ");
-	DEBUG_PRINT(bit(pin), BIN);
-	DEBUG_PRINT(" value ");
-	DEBUG_PRINTLN(value);
+//	DEBUG_PRINT("Write data ");
+//	DEBUG_PRINT(writeByteBuffered, BIN);
+//	DEBUG_PRINT(" for pin ");
+//	DEBUG_PRINT(pin);
+//	DEBUG_PRINT(" bin value ");
+//	DEBUG_PRINT(bit(pin), BIN);
+//	DEBUG_PRINT(" value ");
+//	DEBUG_PRINTLN(value);
 
 //	Serial.print(" --> ");
 //	Serial.println(writeByteBuffered);
