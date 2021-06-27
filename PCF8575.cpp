@@ -280,7 +280,24 @@ void PCF8575::readBuffer(bool force){
 
 		DEBUG_PRINT("Buffer value ");
 		DEBUG_PRINTLN(byteBuffered, BIN);
-
+#ifdef NOT_SEQUENTIAL_PINOUT
+		if ((bit(0) & readMode)>0) digitalInput.p00 = ((byteBuffered & bit(0))>0)?HIGH:LOW;
+		if ((bit(1) & readMode)>0) digitalInput.p01 = ((byteBuffered & bit(1))>0)?HIGH:LOW;
+		if ((bit(2) & readMode)>0) digitalInput.p02 = ((byteBuffered & bit(2))>0)?HIGH:LOW;
+		if ((bit(3) & readMode)>0) digitalInput.p03 = ((byteBuffered & bit(3))>0)?HIGH:LOW;
+		if ((bit(4) & readMode)>0) digitalInput.p04 = ((byteBuffered & bit(4))>0)?HIGH:LOW;
+		if ((bit(5) & readMode)>0) digitalInput.p05 = ((byteBuffered & bit(5))>0)?HIGH:LOW;
+		if ((bit(6) & readMode)>0) digitalInput.p06 = ((byteBuffered & bit(6))>0)?HIGH:LOW;
+		if ((bit(7) & readMode)>0) digitalInput.p07 = ((byteBuffered & bit(7))>0)?HIGH:LOW;
+		if ((bit(8) & readMode)>0) digitalInput.p10 = ((byteBuffered & bit(8))>0)?HIGH:LOW;
+		if ((bit(9) & readMode)>0) digitalInput.p11 = ((byteBuffered & bit(9))>0)?HIGH:LOW;
+		if ((bit(10) & readMode)>0) digitalInput.p12 = ((byteBuffered & bit(10))>0)?HIGH:LOW;
+		if ((bit(11) & readMode)>0) digitalInput.p13 = ((byteBuffered & bit(11))>0)?HIGH:LOW;
+		if ((bit(12) & readMode)>0) digitalInput.p14 = ((byteBuffered & bit(12))>0)?HIGH:LOW;
+		if ((bit(13) & readMode)>0) digitalInput.p15 = ((byteBuffered & bit(13))>0)?HIGH:LOW;
+		if ((bit(14) & readMode)>0) digitalInput.p16 = ((byteBuffered & bit(14))>0)?HIGH:LOW;
+		if ((bit(15) & readMode)>0) digitalInput.p17 = ((byteBuffered & bit(15))>0)?HIGH:LOW;
+#else
 		if ((bit(0) & readMode)>0) digitalInput.p0 = ((byteBuffered & bit(0))>0)?HIGH:LOW;
 		if ((bit(1) & readMode)>0) digitalInput.p1 = ((byteBuffered & bit(1))>0)?HIGH:LOW;
 		if ((bit(2) & readMode)>0) digitalInput.p2 = ((byteBuffered & bit(2))>0)?HIGH:LOW;
@@ -297,7 +314,7 @@ void PCF8575::readBuffer(bool force){
 		if ((bit(13) & readMode)>0) digitalInput.p13 = ((byteBuffered & bit(13))>0)?HIGH:LOW;
 		if ((bit(14) & readMode)>0) digitalInput.p14 = ((byteBuffered & bit(14))>0)?HIGH:LOW;
 		if ((bit(15) & readMode)>0) digitalInput.p15 = ((byteBuffered & bit(15))>0)?HIGH:LOW;
-
+#endif
 		if ((readMode & byteBuffered)>0){
 			byteBuffered = ~readMode & byteBuffered;
 			DEBUG_PRINT("Buffer hight value readed set readed ");
