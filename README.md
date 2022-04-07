@@ -15,6 +15,8 @@
 
 Library to use i2c analog IC with arduino and esp8266. Can read and write digital value with only 2 wire (perfect for ESP-01).
 
+06/04/2022: v1.0.3 Fix package size
+
 Tutorial: 
 
 To download. click the DOWNLOADS button in the top right corner, rename the uncompressed folder PCF8575. Check that the PCF8575 folder contains `PCF8575\\.cpp` and `PCF8575.h`. Place the DHT library folder your `<arduinosketchfolder>/libraries/` folder. You may need to create the libraries subfolder if its your first library. Restart the IDE.
@@ -120,6 +122,6 @@ void keyPressedOnPCF8575(){
 ```
 
 For the examples I use this wire schema on breadboard:
-![Breadboard](https://github.com/xreef/PCF8575_library/blob/master/resources/testReadWriteLedButton_bb.png)
+![Breadboard](https://github.com/xreef/PCF8575_library/raw/master/resources/testReadWriteLedButton_bb.png)
 
 [![Test pcf8575](https://img.youtube.com/vi/jWeHzBLeN6s/0.jpg)](https://youtu.be/jWeHzBLeN6s "Test pcf8575")
