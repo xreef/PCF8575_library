@@ -53,14 +53,14 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	_usingInterrupt = true;
 };
 
-#if !defined(__AVR) && !defined(__STM32F1__)
+#if !defined(__AVR) && !defined(ARDUINO_ARCH_SAMD) && !defined(TEENSYDUINO)
 	/**
 	 * Constructor
 	 * @param address: i2c address
 	 * @param sda: sda pin
 	 * @param scl: scl pin
 	 */
-	PCF8575::PCF8575(uint8_t address, uint8_t sda, uint8_t scl){
+	PCF8575::PCF8575(uint8_t address, int sda, int scl){
 		_wire = &Wire;
 
 		_address = address;
@@ -76,7 +76,7 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	 * @param interruptPin: pin to set interrupt
  	 * @param interruptFunction: function to call when interrupt raised
 	 */
-	PCF8575::PCF8575(uint8_t address, uint8_t sda, uint8_t scl, uint8_t interruptPin,  void (*interruptFunction)() ){
+	PCF8575::PCF8575(uint8_t address, int sda, int scl, uint8_t interruptPin,  void (*interruptFunction)() ){
 		_wire = &Wire;
 
 		_address = address;
@@ -90,7 +90,7 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	};
 #endif
 
-#ifdef ESP32
+#if defined(ESP32) || defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_RP2040) || defined(ARDUINO_ARCH_STM32)
 	/**
 	 * Constructor
 	 * @param address: i2c address
@@ -115,6 +115,8 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 		_interruptFunction = interruptFunction;
 		_usingInterrupt = true;
 	};
+#endif
+#if defined(ESP32)
 
 	/**
 	 * Constructor
@@ -122,7 +124,7 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	 * @param sda: sda pin
 	 * @param scl: scl pin
 	 */
-	PCF8575::PCF8575(TwoWire *pWire, uint8_t address, uint8_t sda, uint8_t scl){
+	PCF8575::PCF8575(TwoWire *pWire, uint8_t address, int sda, int scl){
 		_wire = pWire;
 
 		_address = address;
@@ -138,7 +140,7 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	 * @param interruptPin: pin to set interrupt
 	 * @param interruptFunction: function to call when interrupt raised
 	 */
-	PCF8575::PCF8575(TwoWire *pWire, uint8_t address, uint8_t sda, uint8_t scl, uint8_t interruptPin,  void (*interruptFunction)() ){
+	PCF8575::PCF8575(TwoWire *pWire, uint8_t address, int sda, int scl, uint8_t interruptPin,  void (*interruptFunction)() ){
 		_wire = pWire;
 
 		_address = address;
@@ -156,14 +158,24 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
  * wake up i2c controller
  */
 void PCF8575::begin(){
-	#if !defined(__AVR) && !defined(__STM32F1__)
-		_wire->begin(_sda, _scl);
-	#else
-	//			Default pin for AVR some problem on software emulation
-	//			#define SCL_PIN _scl
-	// 			#define SDA_PIN _sda
-		_wire->begin();
-	#endif
+#if !defined(__AVR)  && !defined(ARDUINO_ARCH_SAMD)  && !defined(TEENSYDUINO)
+	DEBUG_PRINT(F("begin(sda, scl) -> "));DEBUG_PRINT(_sda);DEBUG_PRINT(F(" "));DEBUG_PRINTLN(_scl);
+//		_wire->begin(_sda, _scl);
+#ifdef ARDUINO_ARCH_STM32
+	_wire->begin((uint32_t)_sda, (uint32_t)_scl);
+#elif defined(ARDUINO_ARCH_RP2040)
+	_wire->setSCL(_scl);
+	_wire->setSDA(_sda);
+	_wire->begin();
+#else
+	_wire->begin((int)_sda, (int)_scl);
+#endif
+#else
+//			Default pin for AVR some problem on software emulation
+//			#define SCL_PIN _scl
+// 			#define SDA_PIN _sda
+	_wire->begin();
+#endif
 
 //		Serial.println( writeMode, BIN);
 //		Serial.println( readMode, BIN);

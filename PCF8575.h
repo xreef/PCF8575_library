@@ -36,6 +36,9 @@
 #include "WProgram.h"
 #endif
 
+#define DEFAULT_SDA SDA;
+#define DEFAULT_SCL SCL;
+
 // Uncomment to enable printing out nice debug messages.
 // #define PCF8575_DEBUG
 
@@ -114,18 +117,19 @@ public:
 	PCF8575(uint8_t address);
 	PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunction)() );
 
-#if !defined(__AVR) && !defined(__STM32F1__)
-	PCF8575(uint8_t address, uint8_t sda, uint8_t scl);
-	PCF8575(uint8_t address, uint8_t sda, uint8_t scl, uint8_t interruptPin,  void (*interruptFunction)());
+#if !defined(__AVR) && !defined(ARDUINO_ARCH_SAMD) && !defined(TEENSYDUINO)
+	PCF8575(uint8_t address, int sda, int scl);
+	PCF8575(uint8_t address, int sda, int scl, uint8_t interruptPin,  void (*interruptFunction)());
 #endif
 
-#ifdef ESP32
+#if defined(ESP32) || defined(ARDUINO_ARCH_SAMD) || defined(ARDUINO_ARCH_RP2040) || defined(ARDUINO_ARCH_STM32)
 	///// changes for second i2c bus
 	PCF8575(TwoWire *pWire, uint8_t address);
-	PCF8575(TwoWire *pWire, uint8_t address, uint8_t sda, uint8_t scl);
-
 	PCF8575(TwoWire *pWire, uint8_t address, uint8_t interruptPin,  void (*interruptFunction)() );
-	PCF8575(TwoWire *pWire, uint8_t address, uint8_t sda, uint8_t scl, uint8_t interruptPin,  void (*interruptFunction)());
+#endif
+#if defined(ESP32)
+	PCF8575(TwoWire *pWire, uint8_t address, int sda, int scl);
+	PCF8575(TwoWire *pWire, uint8_t address, int sda, int scl, uint8_t interruptPin,  void (*interruptFunction)());
 #endif
 
 	void begin();
@@ -182,13 +186,31 @@ public:
 private:
 	uint8_t _address;
 
-	#if defined(__AVR) || defined(__STM32F1__)
-		uint8_t _sda;
-		uint8_t _scl;
-	#else
-		uint8_t _sda = SDA;
-		uint8_t _scl = SCL;
+	#if !defined(DEFAULT_SDA)
+	#  if defined(ARDUINO_ARCH_STM32)
+	#    define DEFAULT_SDA PB7
+	#  elif defined(ESP8266)
+	#    define DEFAULT_SDA 4
+	#  elif defined(SDA)
+	#    define DEFAULT_SDA SDA
+	#  else
+	#    error "Error define DEFAULT_SDA, SDA not declared, if you have this error contact the mantainer"
+	#  endif
 	#endif
+	#if !defined(DEFAULT_SCL)
+	#  if defined(ARDUINO_ARCH_STM32)
+	#    define DEFAULT_SCL PB6
+	#  elif defined(ESP8266)
+	#    define DEFAULT_SCL 5
+	#  elif defined(SDA)
+	#    define DEFAULT_SCL SCL
+	#  else
+	#    error "Error define DEFAULT_SCL, SCL not declared, if you have this error contact the mantainer"
+	#  endif
+	#endif
+
+	int _sda = DEFAULT_SDA;
+	int _scl = DEFAULT_SCL;
 
 	TwoWire *_wire;
 

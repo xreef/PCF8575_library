@@ -15,7 +15,12 @@
 
 Library to use i2c analog IC with arduino and esp8266. Can read and write digital value with only 2 wire (perfect for ESP-01).
 
-06/04/2022: v1.0.3 Fix package size
+ - 16/02/2023: v1.1.0 
+    - Fix STM32 support and add support for Raspberry Pi Pico and other rp2040 boards
+    - Add support for custom SERCOM interface of Arduino SAMD devices. Force SDA SCL to use GPIO numeration for STM32 bug (https://www.mischianti.org/forums/topic/compatible-with-stm32duino/). 
+    - Force SDA SCL to use GPIO numeration (https://www.mischianti.org/forums/topic/cannot-set-sda-clk-on-esp8266/).
+    - Fix the SDA SCL type #58 and add basic support for SAMD device.
+ - 06/04/2022: v1.0.3 Fix package size
 
 Tutorial: 
 
