@@ -127,6 +127,6 @@ void keyPressedOnPCF8575(){
 ```
 
 For the examples I use this wire schema on breadboard:
-![Breadboard](https://github.com/xreef/PCF8575_library/raw/master/resources/testReadWriteLedButton_bb.png)
+![Breadboard](https://www.mischianti.org/wp-content/uploads/2019/07/Arduino-pcf8575-module-wiring-schema-button-led.jpg)
 
 [![Test pcf8575](https://img.youtube.com/vi/jWeHzBLeN6s/0.jpg)](https://youtu.be/jWeHzBLeN6s "Test pcf8575")
