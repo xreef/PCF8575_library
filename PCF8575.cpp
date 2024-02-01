@@ -154,10 +154,18 @@ PCF8575::PCF8575(uint8_t address, uint8_t interruptPin,  void (*interruptFunctio
 	};
 #endif
 
+bool PCF8575::begin(uint8_t address){
+	_address = address;
+	return PCF8575::begin();
+}
+
+
 /**
  * wake up i2c controller
  */
-void PCF8575::begin(){
+bool PCF8575::begin(){
+	this->transmissionStatus = 4;
+
 #if !defined(__AVR)  && !defined(ARDUINO_ARCH_SAMD)  && !defined(TEENSYDUINO) && !defined(ARDUINO_ARCH_RENESAS)
 	DEBUG_PRINT(F("begin(sda, scl) -> "));DEBUG_PRINT(_sda);DEBUG_PRINT(F(" "));DEBUG_PRINTLN(_scl);
 //		_wire->begin(_sda, _scl);
@@ -196,7 +204,7 @@ void PCF8575::begin(){
 		_wire->write((uint8_t) (~(usedPin >> 8)));
 
 		DEBUG_PRINTLN("Start end trasmission if stop here check pullup resistor.");
-		_wire->endTransmission();
+		this->transmissionStatus = _wire->endTransmission();
 	}
 
 	// If using interrupt set interrupt value to pin
@@ -208,6 +216,8 @@ void PCF8575::begin(){
 
 	// inizialize last read
 	lastReadMillis = millis();
+
+	return this->isLastTransmissionSuccess();
 }
 
 /**

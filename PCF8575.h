@@ -132,7 +132,8 @@ public:
 	PCF8575(TwoWire *pWire, uint8_t address, int sda, int scl, uint8_t interruptPin,  void (*interruptFunction)());
 #endif
 
-	void begin();
+	bool begin();
+	bool begin(uint8_t address);
 	void pinMode(uint8_t pin, uint8_t mode);
 
 	void readBuffer(bool force = true);
@@ -182,6 +183,11 @@ public:
 		uint16_t digitalReadAll(void);
 	#endif
 	void digitalWrite(uint8_t pin, uint8_t value);
+	bool isLastTransmissionSuccess(){
+		DEBUG_PRINT(F("STATUS --> "));
+		DEBUG_PRINTLN(transmissionStatus);
+		return transmissionStatus==0;
+	}
 
 private:
 	uint8_t _address;
@@ -224,6 +230,9 @@ private:
 	unsigned long lastReadMillis = 0;
 
 	uint16_t writeByteBuffered = 0;
+
+	uint8_t transmissionStatus = 0;
+
 
 };
 
