@@ -45,8 +45,13 @@
 // Uncomment for low memory usage this prevent use of complex DigitalInput structure and free 7byte of memory
 // #define PCF8575_LOW_MEMORY
 
+// Uncomment for low latency to get realtime data every time.
+// #define PCF8575_LOW_LATENCY
+
 // Define where debug output will be printed.
 #define DEBUG_PRINTER Serial
+
+//#define PCF8575_SOFT_INITIALIZATION
 
 // Define to manage original pinout of pcf8575
 // like datasheet but not sequential
@@ -61,7 +66,11 @@
 	#define DEBUG_PRINTLN(...) {}
 #endif
 
-#define READ_ELAPSED_TIME 10
+#ifdef PCF8575_LOW_LATENCY
+	#define READ_ELAPSED_TIME 0
+#else
+	#define READ_ELAPSED_TIME 10
+#endif
 
 //#define P0  	B00000001
 //#define P1  	B00000010
@@ -134,10 +143,10 @@ public:
 
 	bool begin();
 	bool begin(uint8_t address);
-	void pinMode(uint8_t pin, uint8_t mode);
+	void pinMode(uint8_t pin, uint8_t mode, uint8_t output_start = HIGH);
 
 	void readBuffer(bool force = true);
-	uint8_t digitalRead(uint8_t pin);
+	uint8_t digitalRead(uint8_t pin, bool forceReadNow = false);
 	#ifndef PCF8575_LOW_MEMORY
 		struct DigitalInput {
 #ifdef NOT_SEQUENTIAL_PINOUT
@@ -182,12 +191,14 @@ public:
 	#else
 		uint16_t digitalReadAll(void);
 	#endif
-	void digitalWrite(uint8_t pin, uint8_t value);
+	bool digitalWrite(uint8_t pin, uint8_t value);
 	bool isLastTransmissionSuccess(){
 		DEBUG_PRINT(F("STATUS --> "));
 		DEBUG_PRINTLN(transmissionStatus);
 		return transmissionStatus==0;
 	}
+	void attachInterrupt();
+	void detachInterrupt();
 
 private:
 	uint8_t _address;
@@ -225,9 +236,15 @@ private:
 	void (*_interruptFunction)(){};
 
 	uint16_t writeMode 	= 	0;
+	uint16_t resetInitial 	= 	0;
+	uint16_t initialBuffer 	= 	0;
+	uint16_t writeModeUp 	= 	0;
 	uint16_t readMode 	= 	0;
+	uint16_t readModePullUp 	= 	0;
+	uint16_t readModePullDown 	= 	0;
 	uint16_t byteBuffered = 0;
 	unsigned long lastReadMillis = 0;
+	int latency = READ_ELAPSED_TIME;
 
 	uint16_t writeByteBuffered = 0;
 

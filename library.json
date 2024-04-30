@@ -1,6 +1,6 @@
 {
   "name": "PCF8575 library",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "keywords": "digital, i2c, encoder, expander, pcf8575, pcf8575a, esp32, esp8266, stm32, SAMD, Arduino, wire, Raspberry, rp2040",
   "description": "PCF8575 library. i2c digital expander for i2c digital expander for Arduino, Raspberry Pi Pico and rp2040 boards, esp32, SMT32 and ESP8266. Can read write digital values with only 2 wire. Very simple to use and encoder support.",
   "homepage": "https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/",

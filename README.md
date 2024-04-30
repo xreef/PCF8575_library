@@ -15,6 +15,7 @@
 
 Library to use i2c analog IC with arduino and esp8266. Can read and write digital value with only 2 wire (perfect for ESP-01).
 
+ - 30/04/2024: v2.0.0 Manage INPUT_PULLUP, LOW latency mode, support Arduino UNO R4 and initial OUTPUT value
  - 01/02/2024: v1.1.2 Add the possibility to insert address at begin() function and return status of begin operation
  - 10/07/2023: v1.1.1 Add support for Arduino UNO R4
  - 16/02/2023: v1.1.0 
