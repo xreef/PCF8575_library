@@ -10,7 +10,7 @@ A simple and efficient library to use the PCF8575 I2C 16-bit digital I/O expande
 
 **Author:** Renzo Mischianti
 
-**Website / Documentation:** https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/
+**Website / Documentation:** https://www.mischianti.org/pcf8575-i2c-16-bit-digital-i-o-expander/
 
 **GitHub:** https://github.com/xreef/PCF8575_library
 
@@ -20,7 +20,7 @@ A simple and efficient library to use the PCF8575 I2C 16-bit digital I/O expande
 
 Full documentation, tutorials and examples are available on the author site:
 
-- 🌐 **PCF8575 main article**: https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/
+- 🌐 **PCF8575 main article**: https://www.mischianti.org/pcf8575-i2c-16-bit-digital-i-o-expander/
 - 🛠️ **I2C Scanner**: https://playground.arduino.cc/Main/I2cScanner
 - 💬 **Support forum (English)**: https://www.mischianti.org/forums/forum/mischiantis-libraries/pcf8575-16bits-i2c-digital-i-o-expander/
 - 💬 **Forum di supporto (Italiano)**: https://www.mischianti.org/it/forums/forum/le-librerie-di-mischianti/pcf8575-expander-digitale-i-o-i2c-a-16bits/
@@ -284,7 +284,7 @@ Contributions are welcome. Please fork the repository, create a feature branch a
 
 ## 📞 Support & Contact
 
-- Documentation: https://www.mischianti.org/2019/07/22/pcf8575-i2c-16-bit-digital-i-o-expander/
+- Documentation: https://www.mischianti.org/pcf8575-i2c-16-bit-digital-i-o-expander/
 - GitHub Issues: https://github.com/xreef/PCF8575_library/issues
 - Author: Renzo Mischianti (@xreef)
 
