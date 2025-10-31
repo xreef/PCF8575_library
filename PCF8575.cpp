@@ -396,14 +396,16 @@ void PCF8575::readBuffer(bool force){
 		if ((bit(14) & readMode)>0) digitalInput.p16 = ((byteBuffered & bit(14))>0)?HIGH:LOW;
 		if ((bit(15) & readMode)>0) digitalInput.p17 = ((byteBuffered & bit(15))>0)?HIGH:LOW;
 
-        if ((bit(0) & writeMode)>0) digitalInput.p0 = ((writeByteBuffered & bit(0))>0)?HIGH:LOW;
-		if ((bit(1) & writeMode)>0) digitalInput.p1 = ((writeByteBuffered & bit(1))>0)?HIGH:LOW;
-		if ((bit(2) & writeMode)>0) digitalInput.p2 = ((writeByteBuffered & bit(2))>0)?HIGH:LOW;
-		if ((bit(3) & writeMode)>0) digitalInput.p3 = ((writeByteBuffered & bit(3))>0)?HIGH:LOW;
-		if ((bit(4) & writeMode)>0) digitalInput.p4 = ((writeByteBuffered & bit(4))>0)?HIGH:LOW;
-		if ((bit(5) & writeMode)>0) digitalInput.p5 = ((writeByteBuffered & bit(5))>0)?HIGH:LOW;
-		if ((bit(6) & writeMode)>0) digitalInput.p6 = ((writeByteBuffered & bit(6))>0)?HIGH:LOW;
-		if ((bit(7) & writeMode)>0) digitalInput.p7 = ((writeByteBuffered & bit(7))>0)?HIGH:LOW;
+
+		// CORREZIONE: mappare anche i pin di writeMode sulla stessa nomenclatura (p00..p07, p10..p17)
+        if ((bit(0) & writeMode)>0) digitalInput.p00 = ((writeByteBuffered & bit(0))>0)?HIGH:LOW;
+		if ((bit(1) & writeMode)>0) digitalInput.p01 = ((writeByteBuffered & bit(1))>0)?HIGH:LOW;
+		if ((bit(2) & writeMode)>0) digitalInput.p02 = ((writeByteBuffered & bit(2))>0)?HIGH:LOW;
+		if ((bit(3) & writeMode)>0) digitalInput.p03 = ((writeByteBuffered & bit(3))>0)?HIGH:LOW;
+		if ((bit(4) & writeMode)>0) digitalInput.p04 = ((writeByteBuffered & bit(4))>0)?HIGH:LOW;
+		if ((bit(5) & writeMode)>0) digitalInput.p05 = ((writeByteBuffered & bit(5))>0)?HIGH:LOW;
+		if ((bit(6) & writeMode)>0) digitalInput.p06 = ((writeByteBuffered & bit(6))>0)?HIGH:LOW;
+		if ((bit(7) & writeMode)>0) digitalInput.p07 = ((writeByteBuffered & bit(7))>0)?HIGH:LOW;
         if ((bit(8) & writeMode)>0) digitalInput.p10 = ((writeByteBuffered & bit(8))>0)?HIGH:LOW;
 		if ((bit(9) & writeMode)>0) digitalInput.p11 = ((writeByteBuffered & bit(9))>0)?HIGH:LOW;
 		if ((bit(10) & writeMode)>0) digitalInput.p12 = ((writeByteBuffered & bit(10))>0)?HIGH:LOW;
@@ -593,7 +595,7 @@ void PCF8575::readBuffer(bool force){
  */
 //void PCF8575::digitalWrite(uint8_t pin, uint8_t value){
 //	DEBUG_PRINTLN("Begin trasmission");
-//	_wire->beginTransmission(_address);     //Begin the transmission to PCF8575
+//	_wire->beginTransmission(_address);     //Begin the transmission to PCF8574
 //	if (value==HIGH){
 //		writeByteBuffered = writeByteBuffered | bit(pin);
 //	}else{
@@ -671,5 +673,3 @@ bool PCF8575::digitalWrite(uint8_t pin, uint8_t value){
 
 	return this->isLastTransmissionSuccess();
 };
-
-
