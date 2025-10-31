@@ -15,7 +15,9 @@
 
 Library to use i2c analog IC with arduino and esp8266. Can read and write digital value with only 2 wire (perfect for ESP-01).
 
- - 31/10/2025: v2.0.1 Corretto il mapping dei pin in modalità `NOT_SEQUENTIAL_PINOUT` (PCF8575.cpp)
+ - 31/10/2025: v2.0.1 
+   - Corretto il mapping dei pin in modalità `NOT_SEQUENTIAL_PINOUT` (PCF8575.cpp)
+   - Corretto il problema in `PCF8575_LOW_MEMORY`: `digitalReadAll()` ora ritorna i bit 8-15 correttamente usando `uint16_t` per la variabile di ritorno (`byteRead`) in `PCF8575.cpp`.
  - 30/04/2024: v2.0.0 Manage INPUT_PULLUP, LOW latency mode, support Arduino UNO R4 and initial OUTPUT value
  - 01/02/2024: v1.1.2 Add the possibility to insert address at begin() function and return status of begin operation
  - 10/07/2023: v1.1.1 Add support for Arduino UNO R4

@@ -499,17 +499,12 @@ void PCF8575::readBuffer(bool force){
 		DEBUG_PRINT("Buffer value ");
 		DEBUG_PRINTLN(byteBuffered, BIN);
 
-//		uint16_t byteRead = byteBuffered;
-//
-//		if ((readMode & byteBuffered)>0){
-//			byteBuffered = ~readMode & byteBuffered;
-//			DEBUG_PRINT("Buffer hight value readed set readed ");
-//			DEBUG_PRINTLN(byteBuffered, BIN);
-//		}
-		byte byteRead = byteBuffered | writeByteBuffered;
+		//	uint16_t byteRead = byteBuffered | writeByteBuffered;
+
+		uint16_t byteRead = byteBuffered | writeByteBuffered;
 
 		//if ((byteBuffered & readModePullDown)>0 and (~byteBuffered & readModePullUp)>0){
-//			byteBuffered = (resetInitial & readMode) | (byteBuffered  & ~readMode); //~readMode & byteBuffered;
+		//	byteBuffered = (resetInitial & readMode) | (byteBuffered  & ~readMode); //~readMode & byteBuffered;
 		byteBuffered = (initialBuffer & readMode) | (byteBuffered  & ~readMode); //~readMode & byteBuffered;
 			DEBUG_PRINT("Buffer hight value readed set readed ");
 			DEBUG_PRINTLN(byteBuffered, BIN);
